@@ -1,0 +1,69 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "User profile containing reading preferences.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "preferences": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["email"]
+    },
+    "Purchase": {
+      "title": "Purchase",
+      "description": "A book purchased by the user",
+      "type": "object",
+      "properties": {
+        "bookId": { "type": "string" },
+        "purchasedAt": { "type": "integer" }
+      },
+      "required": ["bookId", "purchasedAt"]
+    },
+    "HistoryItem": {
+      "title": "History Item",
+      "description": "A book read by the user",
+      "type": "object",
+      "properties": {
+        "bookId": { "type": "string" },
+        "readAt": { "type": "integer" }
+      },
+      "required": ["bookId", "readAt"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "User review for a book",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "bookId": { "type": "string" },
+        "rating": { "type": "integer" },
+        "comment": { "type": "string" },
+        "createdAt": { "type": "integer" }
+      },
+      "required": ["userId", "bookId", "rating", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "UserProfile" },
+      "description": "Public user profile and preferences"
+    },
+    "/users/{userId}/purchases/{purchaseId}": {
+      "schema": { "$ref": "Purchase" },
+      "description": "User's purchased books"
+    },
+    "/users/{userId}/history/{historyId}": {
+      "schema": { "$ref": "HistoryItem" },
+      "description": "User's reading history"
+    },
+    "/reviews/{reviewId}": {
+      "schema": { "$ref": "Review" },
+      "description": "Global reviews for books"
+    }
+  }
+}

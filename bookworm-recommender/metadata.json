@@ -1,0 +1,6 @@
+{
+  "name": "BookWorm Recommender",
+  "description": "An online book recommender system where users can discover, rate, and review books based on their reading history and preferences.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
